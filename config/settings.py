@@ -1,38 +1,32 @@
 from pathlib import Path
 import os
 from dotenv import load_dotenv
+
 load_dotenv()
 
 # ======================
-# ENV
+# BASE
 # ======================
-load_dotenv()
-
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv("SECRET_KEY", "django-insecure-dev-key")
 
-DEBUG = False
-
-
-ALLOWED_HOSTS = [
-    'localhost',
-    '127.0.0.1',
-    'bavaroshop-production.up.railway.app',
-]
+DEBUG = os.getenv("DEBUG", "True") == "True"
 
 ALLOWED_HOSTS = ['*']
+
+# ======================
+# CSRF / PRODUCCIÓN
+# ======================
 CSRF_TRUSTED_ORIGINS = [
     'https://bavaroshop-production.up.railway.app',
 ]
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-# ======================
-# SECURITY (PRODUCCIÓN)
-# ======================
-CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
+if not DEBUG:
+    CSRF_COOKIE_SECURE = True
+    SESSION_COOKIE_SECURE = True
 
 # ======================
 # APPLICATIONS
@@ -44,19 +38,21 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-   
-
 
     'apps.store.apps.StoreConfig',
 ]
-
 
 # ======================
 # MIDDLEWARE
 # ======================
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+]
+
+if not DEBUG:
+    MIDDLEWARE.append('whitenoise.middleware.WhiteNoiseMiddleware')
+
+MIDDLEWARE += [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -65,13 +61,10 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-
-
 # ======================
 # URLS
 # ======================
 ROOT_URLCONF = 'config.urls'
-
 
 # ======================
 # TEMPLATES
@@ -92,12 +85,10 @@ TEMPLATES = [
     },
 ]
 
-
 # ======================
 # WSGI
 # ======================
 WSGI_APPLICATION = 'config.wsgi.application'
-
 
 # ======================
 # DATABASE
@@ -109,35 +100,23 @@ DATABASES = {
     }
 }
 
-
 # ======================
 # PASSWORD VALIDATION
 # ======================
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
-
 
 # ======================
 # INTERNATIONALIZATION
 # ======================
 LANGUAGE_CODE = 'es-do'
 TIME_ZONE = 'America/Santo_Domingo'
-
 USE_I18N = True
 USE_TZ = True
-
 
 # ======================
 # STATIC & MEDIA
@@ -151,12 +130,10 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-
 # ======================
 # DEFAULT PRIMARY KEY
 # ======================
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
 
 # ======================
 # AUTH REDIRECTS
@@ -165,10 +142,6 @@ LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = '/tienda/'
 LOGOUT_REDIRECT_URL = '/'
 
-
-
-
-
 # ======================
 # EMAIL CONFIG
 # ======================
@@ -176,12 +149,6 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-
 EMAIL_HOST_USER = 'bavaroshop15@gmail.com'
 EMAIL_HOST_PASSWORD = 'abouagzwhxnqsnlf'
-
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
