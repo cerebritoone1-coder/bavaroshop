@@ -1,0 +1,165 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="max-w-6xl mx-auto px-4 py-16">
+
+    <h1 class="text-4xl font-bold text-white mb-12 text-center">
+        🛒 Mi Carrito
+    </h1>
+
+    {% if cart %}
+
+    <!-- Layout profesional en 2 columnas -->
+    <div class="grid md:grid-cols-3 gap-10">
+
+        <!-- ===================== -->
+        <!-- PRODUCTOS -->
+        <!-- ===================== -->
+        <div class="md:col-span-2 space-y-6">
+
+            {% for key, item in cart.items %}
+
+            <div class="bg-white rounded-2xl shadow-lg p-6 flex gap-6 items-center hover:shadow-xl transition">
+
+                <!-- Imagen -->
+                {% if item.image %}
+                <div class="w-32 h-32 flex items-center justify-center bg-white rounded-xl shadow-sm p-2">
+                    <img src="{{ item.image }}"
+                         class="max-h-28 object-contain">
+                </div>
+                {% endif %}
+
+                <!-- Información -->
+                <div class="flex-1">
+
+                    <h2 class="text-lg font-semibold text-gray-800">
+                        {{ item.name }}
+                    </h2>
+
+                    <div class="text-sm text-gray-500 mt-2 space-y-1">
+                        <p>Talla: <span class="font-medium text-gray-700">{{ item.size }}</span></p>
+                        <p>Cantidad: <span class="font-medium text-gray-700">{{ item.quantity }}</span></p>
+                    </div>
+
+                    <p class="text-green-600 font-bold text-lg mt-3">
+                        RD$ {{ item.price|floatformat:2 }}
+                    </p>
+
+                </div>
+
+                <!-- Acción -->
+                <div>
+                    <a href="{% url 'eliminar_carrito' key %}"
+                       class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition shadow-sm text-sm">
+                        Eliminar
+                    </a>
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+        <!-- ===================== -->
+        <!-- RESUMEN PROFESIONAL -->
+        <!-- ===================== -->
+        <div class="bg-white rounded-2xl shadow-xl p-8 h-fit">
+
+            <h2 class="text-xl font-bold text-gray-800 mb-6">
+                Resumen del pedido
+            </h2>
+
+            <div class="space-y-3 text-gray-600 text-sm">
+
+               <div style="
+    background:white;
+    padding:30px;
+    border-radius:16px;
+    box-shadow:0 8px 25px rgba(0,0,0,0.15);
+">
+
+    <h3 style="margin-bottom:25px;">Resumen del pedido</h3>
+
+    <div style="display:flex; justify-content:space-between; margin-bottom:10px;">
+        <span>Subtotal</span>
+        <span>RD$ {{ total }}</span>
+    </div>
+
+    <div style="display:flex; justify-content:space-between; margin-bottom:15px;">
+        <span>Envío</span>
+        <span style="color:green;">Gratis</span>
+    </div>
+
+    <hr style="margin:20px 0;">
+
+    <div style="display:flex; justify-content:space-between; font-weight:bold; font-size:18px;">
+        <span>Total</span>
+        <span style="color:green;">RD$ {{ total }}</span>
+    </div>
+
+    <!-- BOTONES -->
+    <div style="margin-top:25px; display:flex; flex-direction:column; gap:12px;">
+
+        <a href="{% url 'checkout_direccion' %}"
+           style="
+                display:block;
+                width:100%;
+                text-align:center;
+                padding:14px;
+                background:#19c437;
+                color:white;
+                border-radius:30px;
+                text-decoration:none;
+                font-weight:600;
+           ">
+            Pagar ahora
+        </a>
+
+        <a href="{% url 'tienda' %}"
+           style="
+                display:block;
+                width:100%;
+                text-align:center;
+                padding:14px;
+                background:black;
+                color:white;
+                border-radius:30px;
+                text-decoration:none;
+                font-weight:500;
+           ">
+            Seguir comprando
+        </a>
+
+    </div>
+
+    <div style="margin-top:20px; font-size:14px; color:#555;">
+        <p>✔ Envío rápido en 24-48 horas</p>
+        <p>✔ Pago 100% seguro</p>
+        <p>✔ Garantía de satisfacción</p>
+    </div>
+
+</div>
+
+
+    {% else %}
+
+    <div class="bg-white p-12 rounded-2xl shadow-xl text-center max-w-xl mx-auto">
+
+        <p class="text-gray-700 text-xl mb-6">
+            Tu carrito está vacío.
+        </p>
+
+        <a href="{% url 'tienda' %}"
+           class="inline-block bg-blue-700 text-white px-8 py-3 rounded-xl hover:bg-blue-800 transition shadow-md">
+            Ir a la tienda
+        </a>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div style="display:flex; justify-content:center; padding:60px 20px;">
+
+    <div style="
+        width:100%;
+        max-width:750px;
+        background:white;
+        padding:40px;
+        border-radius:12px;
+        box-shadow:0 10px 30px rgba(0,0,0,0.25);
+        color:#222;
+        text-align:center;
+    ">
+
+        <h2 style="margin-bottom:20px; color:#16a34a;">
+            ✅ Pedido confirmado
+        </h2>
+
+        <p style="font-size:18px; margin-bottom:20px;">
+            Has seleccionado <strong>Pago al retirar</strong>.
+        </p>
+
+        <div style="
+            background:#f3f4f6;
+            padding:20px;
+            border-radius:10px;
+            margin-bottom:25px;
+        ">
+            <h3>📍 Información importante</h3>
+            <p>
+                El pago se realizará en el momento de la entrega.
+            </p>
+            <p>
+                Para recibir la ubicación exacta del punto de entrega,
+                puedes escribirnos por WhatsApp.
+            </p>
+        </div>
+
+        <!-- BOTÓN WHATSAPP -->
+        <a href="https://wa.me/8096192002?text=Hola,%20quiero%20recibir%20la%20ubicaci%C3%B3n%20para%20retirar%20mi%20pedido."
+           target="_blank"
+           style="
+                display:inline-block;
+                padding:14px 28px;
+                background:#25D366;
+                color:white;
+                text-decoration:none;
+                border-radius:8px;
+                font-weight:600;
+                margin-bottom:25px;
+           ">
+            Escribir por WhatsApp para recibir ubicación
+        </a>
+
+        <div style="margin-top:20px;">
+            <a href="{% url 'tienda' %}"
+               style="
+                    padding:12px 25px;
+                    background:#1409f0;
+                    color:white;
+                    text-decoration:none;
+                    border-radius:8px;
+                    font-weight:500;
+               ">
+                Volver a la tienda
+            </a>
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}

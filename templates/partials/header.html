@@ -1,0 +1,98 @@
+<header class="fixed top-0 left-0 w-full z-50 
+               bg-black/80 backdrop-blur-md 
+               border-b border-white/10">
+
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center">
+
+    <!-- LOGO -->
+    <div class="flex items-center gap-6">
+      <a href="{% url 'tienda' %}" 
+         class="text-3xl font-extrabold bg-gradient-to-r 
+                from-yellow-400 via-green-400 to-blue-400 
+                bg-clip-text text-transparent tracking-wide">
+        Bávaro Shop
+      </a>
+
+      <a href="{% url 'tienda' %}"
+         class="px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 transition text-sm">
+        Inicio
+      </a>
+    </div>
+
+    <!-- BUSCADOR FUNCIONAL -->
+    <form method="get" action="{% url 'tienda' %}" 
+          class="flex-1 px-10 hidden md:block">
+      <input type="text"
+             name="q"
+             value="{{ request.GET.q }}"
+             placeholder="Buscar productos..."
+             class="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/20
+                    focus:outline-none focus:ring-2 focus:ring-blue-500
+                    text-white placeholder-gray-300">
+    </form>
+
+    <!-- ACCIONES -->
+    <div class="flex items-center gap-5">
+
+      <!-- Chat -->
+      <button onclick="Tawk_API.toggle()"
+        class="px-4 py-2 bg-white/10 hover:bg-white/20 rounded-lg transition text-sm">
+        Chatear
+      </button>
+
+      <!-- Notificaciones -->
+      <a href="{% url 'notificaciones_web' %}" 
+         class="relative text-xl hover:scale-110 transition">
+        🔔
+        {% if unread_count > 0 %}
+          <span class="absolute -top-2 -right-3 bg-red-600 text-xs px-1.5 rounded-full">
+            {{ unread_count }}
+          </span>
+        {% endif %}
+      </a>
+
+      <!-- Carrito -->
+      <a href="{% url 'ver_carrito' %}" 
+         class="relative text-xl cursor-pointer hover:scale-110 transition">
+        🛒
+        {% if request.session.cart %}
+          <span class="absolute -top-2 -right-3 bg-red-600 text-xs px-1.5 rounded-full">
+            {{ request.session.cart|length }}
+          </span>
+        {% endif %}
+      </a>
+
+      <!-- Mi Cuenta -->
+      <div class="relative group">
+        <button
+          class="px-4 py-2 bg-white/10 hover:bg-white/20 rounded-lg transition text-sm">
+          Mi Cuenta
+        </button>
+
+        <div class="absolute right-0 mt-2 w-56 bg-gray-900 border border-white/10
+                    rounded-lg shadow-lg opacity-0 invisible
+                    group-hover:opacity-100 group-hover:visible
+                    transition-all duration-200">
+
+          <a href="{% url 'mi_perfil' %}" class="block px-4 py-3 hover:bg-white/10 transition">
+            Mi perfil
+          </a>
+
+          <a href="{% url 'mis_pedidos' %}" class="block px-4 py-3 hover:bg-white/10 transition">
+            Mis pedidos
+          </a>
+
+          <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit"
+              class="w-full text-left px-4 py-3 hover:bg-red-600/20 text-red-400 transition">
+              Cerrar sesión
+            </button>
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</header>

@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div style="display:flex; justify-content:center; padding:60px 20px;">
+
+    <div style="
+        width:100%;
+        max-width:750px;
+        background:white;
+        padding:40px;
+        border-radius:12px;
+        box-shadow:0 10px 30px rgba(0,0,0,0.25);
+        color:#222;
+        text-align:center;
+    ">
+
+        <h2 style="margin-bottom:25px; font-weight:600;">
+            Instrucciones de Transferencia Bancaria
+        </h2>
+
+        <p style="margin-bottom:30px; font-size:16px;">
+            Realiza la transferencia a una de las siguientes cuentas:
+        </p>
+
+        <!-- Banco Santa Cruz -->
+        <div style="
+            background:#f5f5f5;
+            padding:25px;
+            border-radius:10px;
+            margin-bottom:20px;
+        ">
+            <h3 style="margin-bottom:10px;">Banco Santa Cruz</h3>
+            <p><strong>Número de cuenta:</strong> 11072010021868</p>
+        </div>
+
+        <!-- BanReservas -->
+        <div style="
+            background:#f5f5f5;
+            padding:25px;
+            border-radius:10px;
+            margin-bottom:30px;
+        ">
+            <h3 style="margin-bottom:10px;">BanReservas</h3>
+            <p><strong>Número de cuenta:</strong> 9608319228</p>
+        </div>
+
+        <hr style="margin:30px 0;">
+
+        <h3 style="margin-bottom:15px;">Enviar comprobante</h3>
+
+        <p style="margin-bottom:10px;">
+            Luego de realizar la transferencia, envía el comprobante por WhatsApp al siguiente número:
+        </p>
+
+        <p style="font-size:18px; font-weight:600; color:#16a34a; margin-bottom:20px;">
+             +1 809 619 2002
+        </p>
+
+        <p style="color:#555; font-size:14px;">
+            Adjunta la imagen del comprobante e incluye tu nombre.
+        </p>
+
+        <div style="margin-top:30px;">
+            <a href="https://wa.me/18096192002?text=Hola,%20ya%20realic%C3%A9%20la%20transferencia%20de%20mi%20pedido%20y%20te%20env%C3%ADo%20el%20comprobante%20de%20pago."
+               target="_blank"
+               style="
+                    padding:14px 28px;
+                    background:#25D366;
+                    color:white;
+                    text-decoration:none;
+                    border-radius:8px;
+                    font-weight:600;
+                    display:inline-block;
+               ">
+                Enviar comprobante por WhatsApp
+            </a>
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}

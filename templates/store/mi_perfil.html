@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="max-w-5xl mx-auto mt-16 px-4">
+
+    <div class="bg-gradient-to-br from-blue-900/60 via-indigo-800/60 to-purple-900/60 
+                backdrop-blur-lg rounded-3xl p-12 
+                border border-white/20 shadow-2xl">
+
+        <!-- TÍTULO -->
+        <h1 class="text-4xl font-extrabold mb-12 
+                   bg-gradient-to-r from-yellow-400 via-orange-500 to-pink-500 
+                   bg-clip-text text-transparent">
+             Mi Perfil
+        </h1>
+
+        <div class="grid md:grid-cols-2 gap-10">
+
+            <!-- INFORMACIÓN PERSONAL -->
+            <div class="space-y-8">
+
+                <!-- Correo -->
+                <div>
+                    <p class="text-gray-300 text-sm uppercase tracking-wider">
+                        Correo electrónico
+                    </p>
+                    <p class="text-xl font-semibold text-white mt-1">
+                        {{ user.email }}
+                    </p>
+                </div>
+
+          
+
+                <!-- Miembro desde -->
+                <div>
+                    <p class="text-gray-300 text-sm uppercase tracking-wider">
+                        Miembro desde
+                    </p>
+                    <p class="text-xl font-semibold text-white mt-1">
+                        {{ user.date_joined|date:"d M Y" }}
+                    </p>
+                </div>
+
+            </div>
+
+          
+               
+      <div class="mt-8 text-center">
+   <a href="{% url 'tienda' %}"
+   class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition shadow-md">
+    Volver a la tienda
+</a>
+
+</div>
+
+
+            
+
+        
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

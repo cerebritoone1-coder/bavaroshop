@@ -1,0 +1,105 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Bávaro Shop{% endblock %}</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+  {% load static %}
+<link rel="manifest" href="{% static 'manifest.json' %}">
+<meta name="theme-color" content="#000000">
+
+</head>
+
+<body class="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 text-white font-sans antialiased flex flex-col">
+
+    {% include "partials/header.html" %}
+
+    <!-- ===== ANUNCIOS SOLO EN TIENDA Y PRODUCTO ===== -->
+    {% if request.path == '/tienda/' or '/producto/' in request.path %}
+
+    <div class="hidden xl:block fixed left-8 top-80 w-44 space-y-10 z-40">
+
+    <div class="bg-gradient-to-br from-yellow-400 via-green-500 to-emerald-600 
+                text-white rounded-2xl shadow-xl p-6 text-center">
+        <h3 class="font-bold mb-2 text-lg">Oferta Especial</h3>
+        <p class="text-sm opacity-90">
+            20% de descuento en calzados esta semana.
+        </p>
+    </div>
+
+    <div class="bg-gradient-to-br from-emerald-500 via-green-600 to-teal-600 
+                text-white rounded-2xl shadow-xl p-6 text-center">
+        <h3 class="font-bold mb-2 text-lg">Envío Gratis</h3>
+        <p class="text-sm opacity-90">
+            En compras superiores a RD$ 3,000.
+        </p>
+    </div>
+
+</div>
+
+    <div class="hidden xl:block fixed right-8 top-80 w-44 space-y-10 z-40">
+
+    <div class="bg-gradient-to-br from-green-500 via-emerald-600 to-teal-700 
+                text-white rounded-2xl shadow-xl p-6 text-center">
+        <h3 class="font-bold mb-3 text-lg">¿Por qué comprar aquí?</h3>
+        <ul class="text-sm space-y-1 opacity-90">
+            <li>✔ Pago 100% seguro</li>
+            <li>✔ Atención personalizada</li>
+            <li>✔ Garantía de satisfacción</li>
+        </ul>
+    </div>
+
+    <div class="bg-gradient-to-r from-blue-500 via-purple-500 to-indigo-600 
+                text-white rounded-2xl shadow-xl p-6 text-center">
+        <h3 class="font-bold mb-2 text-lg">Nueva Colección</h3>
+        <p class="text-sm opacity-90">
+            Descubre los productos más recientes.
+        </p>
+    </div>
+
+</div>
+
+
+    {% endif %}
+    <!-- ===== FIN ANUNCIOS ===== -->
+
+  <main class="pt-24">
+    {% block content %}
+    {% endblock %}
+</main>
+
+
+    <footer class="bg-black/50 py-6 text-center text-sm text-gray-300 border-t border-white/10">
+        <p>© {% now "Y" %} Bávaro Shop • Santo Domingo, RD</p>
+    </footer>
+
+    <!-- Tawk.to Chat -->
+    <script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+        var s1=document.createElement("script"),
+            s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/697e9ada4d7a741c35709df1/1jgb8pp6u';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+    })();
+    </script>
+<script>
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("/static/service-worker.js");
+}
+</script>
+
+
+</body>
+</html>

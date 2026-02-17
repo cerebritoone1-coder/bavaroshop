@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div style="display:flex; justify-content:center; padding:60px 20px;">
+
+    <div style="
+        width:100%;
+        max-width:750px;
+        background:white;
+        padding:40px;
+        border-radius:12px;
+        box-shadow:0 10px 30px rgba(0,0,0,0.15);
+        color:#222;
+    ">
+
+        <h2 style="margin-bottom:30px; font-weight:600; color:#111;">
+            Información de Envío
+        </h2>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <!-- Nombre y Apellido -->
+            <div style="display:flex; gap:20px; margin-bottom:20px;">
+                <div style="flex:1;">
+                    <label style="font-weight:500;">Nombre</label>
+                    <input type="text" name="first_name" required
+                           style="width:100%; padding:12px; margin-top:6px; border-radius:6px; border:1px solid #ccc;">
+                </div>
+
+                <div style="flex:1;">
+                    <label style="font-weight:500;">Apellido</label>
+                    <input type="text" name="last_name" required
+                           style="width:100%; padding:12px; margin-top:6px; border-radius:6px; border:1px solid #ccc;">
+                </div>
+            </div>
+
+            <!-- Dirección -->
+            <div style="margin-bottom:20px;">
+                <label style="font-weight:500;">Dirección</label>
+                <textarea name="address" required
+                          style="width:100%; padding:12px; margin-top:6px; border-radius:6px; border:1px solid #ccc;"></textarea>
+            </div>
+
+            <!-- Ciudad y Teléfono -->
+            <div style="display:flex; gap:20px; margin-bottom:20px;">
+                <div style="flex:1;">
+                    <label style="font-weight:500;">Ciudad</label>
+                    <input type="text" name="city" required
+                           style="width:100%; padding:12px; margin-top:6px; border-radius:6px; border:1px solid #ccc;">
+                </div>
+
+                <div style="flex:1;">
+                    <label style="font-weight:500;">Teléfono</label>
+                    <input type="text" name="phone" required
+                           style="width:100%; padding:12px; margin-top:6px; border-radius:6px; border:1px solid #ccc;">
+                </div>
+            </div>
+
+            <!-- MÉTODO DE PAGO -->
+            <div style="margin-bottom:30px;">
+                <label style="font-weight:600;">Método de pago</label>
+                <select name="payment_method" required
+                        style="width:100%; padding:12px; margin-top:6px; border-radius:6px; border:1px solid #ccc;">
+                    <option value="">Seleccione una opción</option>
+                    <option value="transfer">Transferencia bancaria</option>
+                    <option value="pickup">Pago al retirar</option>
+                </select>
+            </div>
+
+            <!-- Footer -->
+            <div style="
+                display:flex;
+                justify-content:space-between;
+                align-items:center;
+                border-top:1px solid #eee;
+                padding-top:20px;
+            ">
+
+                <a href="{% url 'tienda' %}"
+                   style="
+                        padding:10px 20px;
+                        background:#6c757d;
+                        color:#fff;
+                        text-decoration:none;
+                        border-radius:8px;
+                        font-weight:500;
+                   ">
+                    Cancelar compra
+                </a>
+
+                <div style="display:flex; align-items:center; gap:20px;">
+                    <h3 style="margin:0;">Total: RD$ {{ total }}</h3>
+
+                    <button type="submit"
+                            style="
+                                padding:12px 25px;
+                                background:#28a745;
+                                color:#fff;
+                                border:none;
+                                border-radius:8px;
+                                cursor:pointer;
+                                font-weight:600;
+                            ">
+                        Confirmar pedido
+                    </button>
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends "base_auth.html" %}
+
+{% block content %}
+
+<section class="min-h-screen flex flex-col justify-center items-center px-6 text-center">
+
+  <div class="max-w-4xl">
+
+    <!-- TÍTULO -->
+    <h1 class="text-6xl md:text-7xl font-extrabold mb-6 
+               bg-gradient-to-r from-yellow-400 via-orange-500 to-pink-500 
+               bg-clip-text text-transparent drop-shadow-lg">
+        Bávaro Shop
+    </h1>
+
+    <!-- MENSAJE PRINCIPAL -->
+    <p class="text-xl md:text-2xl text-gray-200 mb-6 font-medium">
+        Calidad y confianza en cada compra.
+    </p>
+
+    <!-- MENSAJE INSTITUCIONAL -->
+    <p class="text-gray-300 text-lg mb-10 leading-relaxed">
+        Plataforma de comercio electrónico diseñada para ofrecer una experiencia 
+        segura, eficiente y profesional.  
+        Para acceder a nuestros productos y realizar compras, es necesario iniciar sesión.
+    </p>
+
+    <!-- BOTONES (SOLO ACCESO) -->
+    <div class="flex justify-center gap-4">
+
+        <a href="{% url 'login' %}"
+           class="bg-white text-gray-900 px-6 py-3 rounded-lg shadow-lg hover:bg-gray-100 transition">
+           Iniciar sesión
+        </a>
+
+        <a href="{% url 'register' %}"
+           class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg shadow-lg transition">
+           Registrarse
+        </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+{% endblock %}
