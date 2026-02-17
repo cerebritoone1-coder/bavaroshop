@@ -21,11 +21,18 @@ ALLOWED_HOSTS = [
     'bavaroshop-production.up.railway.app',
 ]
 
-
+ALLOWED_HOSTS = ['*']
 CSRF_TRUSTED_ORIGINS = [
     'https://bavaroshop-production.up.railway.app',
 ]
 
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# ======================
+# SECURITY (PRODUCCIÓN)
+# ======================
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
 
 # ======================
 # APPLICATIONS
@@ -158,11 +165,7 @@ LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = '/tienda/'
 LOGOUT_REDIRECT_URL = '/'
 
-# ======================
-# SECURITY (PRODUCCIÓN)
-# ======================
-CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
+
 
 
 
