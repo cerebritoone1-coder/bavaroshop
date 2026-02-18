@@ -1,19 +1,8 @@
 {
   "build": {
-    "builder": "NIXPACKS",
-    "nixpacksPlan": {
-      "providers": ["python"],
-      "phases": {
-        "setup": {
-          "nixPkgs": ["python311", "python311Packages.pip"]
-        },
-        "install": {
-          "cmds": ["pip install --no-cache-dir -r requirements.txt"]
-        }
-      }
-    }
+    "builder": "PYTHON"
   },
   "deploy": {
-    "startCommand": "python manage.py migrate && python manage.py collectstatic --noinput && python manage.py createsuperuser --noinput --username cerebritoone1 --email cerebritoone1@gmail.com && gunicorn config.wsgi:application --bind 0.0.0.0:$PORT"
+    "startCommand": "python manage.py migrate && python manage.py collectstatic --noinput && gunicorn config.wsgi:application --bind 0.0.0.0:$PORT"
   }
 }
