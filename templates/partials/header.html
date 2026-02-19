@@ -120,12 +120,12 @@
 <div id="mobileMenu" class="hidden md:hidden bg-black border-t border-white/10 px-4 py-4 space-y-4">
 
   <!-- BUSCADOR MOVIL -->
-  <form method="get" action="{% url 'tienda' %}">
-    <input type="text"
-           name="q"
-           placeholder="Buscar productos..."
-           class="w-full px-3 py-2 rounded-lg bg-white/10 border border-white/20 text-white">
-  </form>
+<form method="get" action="{% url 'tienda' %}" class="mt-2">
+  <input type="text"
+         name="q"
+         placeholder="Buscar productos..."
+         class="w-full px-3 py-2 rounded-lg bg-white text-black border border-gray-300">
+</form>
 
   <a href="{% url 'tienda' %}" class="block">Inicio</a>
   <a href="{% url 'mi_perfil' %}" class="block">Mi Perfil</a>
