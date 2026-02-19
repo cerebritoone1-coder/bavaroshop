@@ -3,26 +3,31 @@
 {% block content %}
 
 <!-- HERO SECTION -->
-<section class="bg-gradient-to-r from-blue-800 via-blue-600 to-green-600 py-6 text-white">
+<section class="bg-gradient-to-r from-blue-800 via-blue-600 to-green-600 py-4 sm:py-6 text-white">
+
     <div class="max-w-4xl mx-auto px-4">
-        <h1 class="text-5xl font-bold mb-4">
+       <h1 class="text-3xl sm:text-5xl font-bold mb-4 leading-tight">
+
             Descubre lo mejor de Bávaro Shop
         </h1>
-        <p class="text-lg opacity-90 max-w-2xl">
+      <p class="text-sm sm:text-lg opacity-90 max-w-2xl">
+
             Productos seleccionados con calidad premium y estilo moderno.
         </p>
     </div>
 </section>
 
 <!-- PRODUCTOS -->
-<section class="bg-gray-100 py-16">
+<section class="bg-gray-100 py-8 sm:py-16">
+
     <div class="max-w-7xl mx-auto px-6">
 
         <h2 class="text-3xl font-bold text-gray-800 mb-10">
             Productos disponibles
         </h2>
 
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+ <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-8">
+
 
             {% for producto in productos %}
 
