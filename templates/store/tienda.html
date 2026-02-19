@@ -34,13 +34,12 @@
             <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition duration-300 overflow-hidden flex flex-col">
 
                 <!-- Imagen -->
-              <div class="bg-gray-50 p-4 flex justify-center items-center aspect-square">
-
-                    {% if producto.image %}
-                        <img src="{{ producto.image.url }}" 
-                             class="max-h-52 object-contain transition duration-300 hover:scale-105">
-                    {% endif %}
-                </div>
+              <div class="bg-gray-50 p-3 flex justify-center items-center h-40 sm:h-52 overflow-hidden">
+    {% if producto.image %}
+        <img src="{{ producto.image.url }}" 
+             class="max-h-full object-contain transition duration-300 hover:scale-105">
+    {% endif %}
+</div>
 
                 <!-- Info -->
                 <div class="p-6 flex flex-col flex-grow">

@@ -12,13 +12,13 @@
     
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
 
-  {% load static %}
+
 <link rel="manifest" href="{% static 'manifest.json' %}">
 <meta name="theme-color" content="#000000">
 
 </head>
 
-<body class="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 text-white font-sans antialiased flex flex-col">
+<body class="min-h-screen bg-slate-900 text-white font-sans antialiased flex flex-col"></body>
 
     {% include "partials/header.html" %}
 
@@ -70,8 +70,7 @@
 
     {% endif %}
     <!-- ===== FIN ANUNCIOS ===== -->
-
-  <main class="pt-24">
+<main class="pt-20 md:pt-24"></main>
     {% block content %}
     {% endblock %}
 </main>
