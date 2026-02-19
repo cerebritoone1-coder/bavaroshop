@@ -18,8 +18,7 @@
 
 </head>
 
-<body class="min-h-screen bg-slate-100 text-gray-900 font-sans antialiased flex flex-col">
-
+<body class="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 text-white font-sans antialiased flex flex-col">
 
     {% include "partials/header.html" %}
 
@@ -101,17 +100,6 @@ if ("serviceWorker" in navigator) {
 }
 </script>
 
-<div class="mobile-nav">
-    <a href="/">Inicio</a>
-    <a href="/tienda/">Tienda</a>
-    <a href="/carrito/">Carrito</a>
-    <a href="/mi-perfil/">Perfil</a>
-</div>
-<script>
-document.getElementById("mobile-menu-btn").addEventListener("click", function() {
-    document.getElementById("mobile-menu").classList.toggle("hidden");
-});
-</script>
 
 </body>
 </html>

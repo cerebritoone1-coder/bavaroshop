@@ -2,26 +2,26 @@
                bg-black/80 backdrop-blur-md 
                border-b border-white/10">
 
-  <div class="max-w-7xl mx-auto px-4 md:px-6 py-4 flex items-center justify-between">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center">
 
-    <!-- LOGO + INICIO -->
-    <div class="flex items-center gap-4">
+    <!-- LOGO -->
+    <div class="flex items-center gap-6">
       <a href="{% url 'tienda' %}" 
-         class="text-2xl md:text-3xl font-extrabold bg-gradient-to-r 
+         class="text-3xl font-extrabold bg-gradient-to-r 
                 from-yellow-400 via-green-400 to-blue-400 
                 bg-clip-text text-transparent tracking-wide">
         Bávaro Shop
       </a>
 
       <a href="{% url 'tienda' %}"
-         class="hidden md:inline-block px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 transition text-sm">
+         class="px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 transition text-sm">
         Inicio
       </a>
     </div>
 
-    <!-- BUSCADOR (solo escritorio) -->
+    <!-- BUSCADOR FUNCIONAL -->
     <form method="get" action="{% url 'tienda' %}" 
-          class="flex-1 px-10 hidden lg:block">
+          class="flex-1 px-10 hidden md:block">
       <input type="text"
              name="q"
              value="{{ request.GET.q }}"
@@ -31,14 +31,16 @@
                     text-white placeholder-gray-300">
     </form>
 
-    <!-- ACCIONES DESKTOP -->
-    <div class="hidden md:flex items-center gap-5">
+    <!-- ACCIONES -->
+    <div class="flex items-center gap-5">
 
+      <!-- Chat -->
       <button onclick="Tawk_API.toggle()"
         class="px-4 py-2 bg-white/10 hover:bg-white/20 rounded-lg transition text-sm">
         Chatear
       </button>
 
+      <!-- Notificaciones -->
       <a href="{% url 'notificaciones_web' %}" 
          class="relative text-xl hover:scale-110 transition">
         🔔
@@ -49,6 +51,7 @@
         {% endif %}
       </a>
 
+      <!-- Carrito -->
       <a href="{% url 'ver_carrito' %}" 
          class="relative text-xl cursor-pointer hover:scale-110 transition">
         🛒
@@ -89,35 +92,7 @@
 
         </div>
       </div>
+
     </div>
-
-    <!-- BOTÓN MENÚ MÓVIL -->
-    <button id="mobile-menu-btn" class="md:hidden text-2xl">
-      ☰
-    </button>
-
   </div>
-
-  <!-- MENÚ MÓVIL -->
-  <div id="mobile-menu" class="hidden md:hidden bg-gray-900 border-t border-white/10 px-4 py-6 space-y-4">
-
-    <a href="{% url 'tienda' %}" class="block">Inicio</a>
-    <a href="{% url 'mi_perfil' %}" class="block">Mi perfil</a>
-    <a href="{% url 'mis_pedidos' %}" class="block">Mis pedidos</a>
-    <a href="{% url 'ver_carrito' %}" class="block">Carrito</a>
-    <a href="{% url 'notificaciones_web' %}" class="block">Notificaciones</a>
-
-    <button onclick="Tawk_API.toggle()" class="block w-full text-left">
-      Chatear
-    </button>
-
-    <form method="post" action="{% url 'logout' %}">
-      {% csrf_token %}
-      <button type="submit" class="block text-red-400">
-        Cerrar sesión
-      </button>
-    </form>
-
-  </div>
-
 </header>

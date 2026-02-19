@@ -3,57 +3,58 @@
 {% block content %}
 
 <!-- HERO SECTION -->
-<section class="bg-gradient-to-r from-blue-800 via-blue-600 to-green-600 py-8 text-white">
+<section class="bg-gradient-to-r from-blue-800 via-blue-600 to-green-600 py-6 text-white">
     <div class="max-w-4xl mx-auto px-4">
-        <h1 class="text-3xl sm:text-5xl font-bold mb-3 leading-tight">
+        <h1 class="text-5xl font-bold mb-4">
             Descubre lo mejor de Bávaro Shop
         </h1>
-        <p class="text-sm sm:text-lg opacity-90 max-w-2xl">
+        <p class="text-lg opacity-90 max-w-2xl">
             Productos seleccionados con calidad premium y estilo moderno.
         </p>
     </div>
 </section>
 
 <!-- PRODUCTOS -->
-<section class="bg-gray-100 py-10 sm:py-16">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+<section class="bg-gray-100 py-16">
+    <div class="max-w-7xl mx-auto px-6">
 
-        <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-6 sm:mb-10">
+        <h2 class="text-3xl font-bold text-gray-800 mb-10">
             Productos disponibles
         </h2>
 
-        <!-- GRID RESPONSIVE MEJORADO -->
-        <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-8">
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
 
             {% for producto in productos %}
 
-            <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition duration-300 overflow-hidden flex flex-col">
+            <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition duration-300 overflow-hidden flex flex-col">
 
                 <!-- Imagen -->
-                <div class="bg-gray-50 flex justify-center items-center aspect-square p-4">
+                <div class="bg-gray-50 p-6 flex justify-center items-center h-64">
                     {% if producto.image %}
                         <img src="{{ producto.image.url }}" 
-                             class="object-contain max-h-full transition duration-300 hover:scale-105">
+                             class="max-h-52 object-contain transition duration-300 hover:scale-105">
                     {% endif %}
                 </div>
 
                 <!-- Info -->
-                <div class="p-4 flex flex-col flex-grow">
+                <div class="p-6 flex flex-col flex-grow">
 
-                    <h3 class="text-sm sm:text-lg font-semibold text-gray-800 mb-1 line-clamp-2">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">
                         {{ producto.name }}
                     </h3>
 
-                    <p class="text-green-600 text-base sm:text-xl font-bold mb-3">
+                    <p class="text-green-600 text-xl font-bold mb-4">
                         RD$ {{ producto.price|floatformat:2 }}
                     </p>
 
                     <div class="mt-auto">
 
                         <a href="{% url 'product_detail' producto.slug %}"
-                           class="block w-full text-center bg-gray-800 text-white py-2 rounded-lg text-sm sm:text-base hover:bg-gray-900 transition">
+                           class="block w-full text-center bg-gray-800 text-white py-2 rounded-lg mb-3 hover:bg-gray-900 transition">
                             Ver detalle
                         </a>
+
+                       
 
                     </div>
 
