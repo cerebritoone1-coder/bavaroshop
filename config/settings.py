@@ -65,28 +65,29 @@ TEMPLATES = [
 WSGI_APPLICATION = 'config.wsgi.application'
 
 # ======================
-# DATABASE CORREGIDA
+# ======================
+# DATABASE CONFIGURACIÓN CORRECTA
 # ======================
 
 DATABASE_URL = os.environ.get("DATABASE_URL")
 
 if DATABASE_URL:
-    print("DATABASE_URL:", DATABASE_URL)
+    print("USANDO POSTGRESQL:", DATABASE_URL)
     DATABASES = {
-        'default': dj_database_url.parse(
+        "default": dj_database_url.parse(
             DATABASE_URL,
             conn_max_age=600,
             ssl_require=True
         )
     }
 else:
+    print("USANDO SQLITE LOCAL")
     DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
         }
     }
-
 # ======================
 # PASSWORD VALIDATION
 # ======================
