@@ -1,12 +1,10 @@
 from pathlib import Path
 import os
 from dotenv import load_dotenv
+import dj_database_url
 
 load_dotenv()
 
-# ======================
-# BASE
-# ======================
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv("SECRET_KEY", "django-insecure-dev-key")
@@ -15,9 +13,6 @@ DEBUG = os.getenv("DEBUG", "True") == "True"
 
 ALLOWED_HOSTS = ['*']
 
-# ======================
-# CSRF / PRODUCCIÓN
-# ======================
 CSRF_TRUSTED_ORIGINS = [
     'https://bavaroshop-production.up.railway.app',
 ]
@@ -28,9 +23,6 @@ if not DEBUG:
     CSRF_COOKIE_SECURE = True
     SESSION_COOKIE_SECURE = True
 
-# ======================
-# APPLICATIONS
-# ======================
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -38,16 +30,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
     'apps.store.apps.StoreConfig',
 ]
-
-# ======================
-# MIDDLEWARE
-# ======================
-# ======================
-# MIDDLEWARE
-# ======================
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -60,15 +44,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-
-# ======================
-# URLS
-# ======================
 ROOT_URLCONF = 'config.urls'
 
-# ======================
-# TEMPLATES
-# ======================
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -85,31 +62,34 @@ TEMPLATES = [
     },
 ]
 
-# ======================
-# WSGI
-# ======================
 WSGI_APPLICATION = 'config.wsgi.application'
 
 # ======================
-# DATABASE
-
-
-# ======================
-# DATABASE
+# DATABASE CORREGIDA
 # ======================
 
-import dj_database_url
+DATABASE_URL = os.environ.get("DATABASE_URL")
 
-DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ.get("DATABASE_URL"),
-        conn_max_age=600,
-        ssl_require=not DEBUG
-    )
-}
+if DATABASE_URL:
+    DATABASES = {
+        'default': dj_database_url.parse(
+            DATABASE_URL,
+            conn_max_age=600,
+            ssl_require=True
+        )
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+
 # ======================
 # PASSWORD VALIDATION
 # ======================
+
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
     {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
@@ -117,49 +97,36 @@ AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
-# ======================
-# INTERNATIONALIZATION
-# ======================
 LANGUAGE_CODE = 'es-do'
 TIME_ZONE = 'America/Santo_Domingo'
 USE_I18N = True
 USE_TZ = True
 
 # ======================
-# STATIC & MEDIA
+# STATIC
 # ======================
-STATIC_URL = '/static/'
 
+STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-STATICFILES_FINDERS = [
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-# ======================
-# DEFAULT PRIMARY KEY
-# ======================
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# ======================
-# AUTH REDIRECTS
-# ======================
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = '/tienda/'
 LOGOUT_REDIRECT_URL = '/'
 
 # ======================
-# EMAIL CONFIG
+# EMAIL SEGURA
 # ======================
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'bavaroshop15@gmail.com'
-EMAIL_HOST_PASSWORD = 'abouagzwhxnqsnlf'
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
