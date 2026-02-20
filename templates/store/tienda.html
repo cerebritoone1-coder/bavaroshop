@@ -3,11 +3,11 @@
 {% block content %}
 
 <!-- HERO SECTION -->
-<section class="bg-gradient-to-r from-blue-800 via-blue-600 to-green-600 py-10 sm:py-16 text-white">
+<section class="bg-gradient-to-r from-blue-800 via-blue-600 to-green-600 py-14 sm:py-20 text-white text-center">
 
-    <div class="max-w-5xl mx-auto px-4 text-center">
+    <div class="max-w-5xl mx-auto px-4">
 
-        <h1 class="text-4xl sm:text-6xl font-extrabold mb-6 leading-tight">
+        <h1 class="text-5xl sm:text-6xl font-extrabold mb-6">
             Descubre lo mejor de Bávaro Shop
         </h1>
 
@@ -17,7 +17,6 @@
 
     </div>
 </section>
-
 <!-- PRODUCTOS -->
 <section class="bg-gray-100 py-12 sm:py-20">
 
@@ -34,12 +33,12 @@
             <div class="bg-white rounded-2xl shadow-md hover:shadow-2xl transition duration-300 overflow-hidden flex flex-col">
 
                 <!-- Imagen -->
-                <div class="bg-gray-50 flex justify-center items-center h-40 sm:h-56 overflow-hidden">
-                    {% if producto.image %}
-                        <img src="{{ producto.image.url }}" 
-                             class="h-full object-contain">
-                    {% endif %}
-                </div>
+               <div class="h-48 sm:h-56 overflow-hidden">
+    {% if producto.image %}
+        <img src="{{ producto.image.url }}" 
+             class="w-full h-full object-cover">
+    {% endif %}
+</div>
 
                 <!-- Info -->
                 <div class="p-5 flex flex-col flex-grow">
