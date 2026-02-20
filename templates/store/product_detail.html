@@ -17,31 +17,17 @@
     </div>
 
     <!-- Miniaturas -->
-    <div class="flex flex-col lg:flex-row gap-6">
-
-    <!-- IMAGEN PRINCIPAL -->
-    <div class="flex-1 flex justify-center items-center bg-gray-50 p-4 rounded-xl">
-
-        {% if product.image %}
-            <img id="mainImage"
-                 src="{{ product.image.url }}"
-                 class="max-h-64 sm:max-h-96 w-auto object-contain transition duration-300">
-        {% endif %}
-
-    </div>
-
-    <!-- MINIATURAS -->
-    <div class="flex lg:flex-col gap-3 justify-center">
+    <div style="display:flex; flex-direction:column; gap:10px;">
 
         <!-- Imagen principal como miniatura -->
         <img src="{{ product.image.url }}"
              onclick="changeImage(this)"
-             class="w-16 sm:w-20 cursor-pointer rounded-lg border hover:scale-105 transition">
+             style="width:80px; cursor:pointer; border-radius:8px;">
 
         {% for img in images %}
             <img src="{{ img.image.url }}"
                  onclick="changeImage(this)"
-                 class="w-16 sm:w-20 cursor-pointer rounded-lg border hover:scale-105 transition">
+                 style="width:80px; cursor:pointer; border-radius:8px;">
         {% endfor %}
 
     </div>
