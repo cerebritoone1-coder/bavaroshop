@@ -24,50 +24,44 @@
 </section>
 
 <!-- PRODUCTOS -->
-<section class="bg-gray-100 py-8 sm:py-24">
+<!-- PRODUCTOS -->
+<section class="bg-gray-100 py-10 sm:py-24">
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6">
 
-        <h2 class="text-xl sm:text-4xl font-bold text-gray-800 mb-6 sm:mb-12 text-center">
+        <h2 class="text-2xl sm:text-4xl font-bold text-gray-800 mb-8 sm:mb-12 text-center">
             Productos disponibles
         </h2>
 
-   <div class="grid grid-cols-2 gap-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"></div>
+        <!-- GRID RESPONSIVE -->
+        <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-8">
 
             {% for producto in productos %}
 
-            <div class="bg-white rounded-xl shadow-md hover:shadow-xl 
-                        transition duration-300 overflow-hidden flex flex-col">
+            <div class="bg-white rounded-xl shadow-md hover:shadow-xl transition duration-300 overflow-hidden flex flex-col">
 
                 <!-- Imagen más pequeña en móvil -->
-                <div class="bg-gray-50 flex items-center justify-center 
-                            h-28 sm:h-52 p-2 sm:p-4">
+                <div class="bg-gray-50 flex items-center justify-center h-32 sm:h-52 p-2 sm:p-4">
                     {% if producto.image %}
                         <img src="{{ producto.image.url }}"
-                             class="max-h-20 sm:max-h-44 w-auto object-contain">
+                             class="max-h-24 sm:max-h-44 w-auto object-contain">
                     {% endif %}
                 </div>
 
-                <!-- Info más compacta -->
+                <!-- Info -->
                 <div class="p-3 sm:p-6 flex flex-col flex-grow">
 
                     <h3 class="text-sm sm:text-lg font-semibold text-gray-800 mb-1 sm:mb-2">
                         {{ producto.name }}
                     </h3>
 
-                    <p class="text-green-600 text-base sm:text-xl font-bold mb-2 sm:mb-4">
+                    <p class="text-green-600 text-sm sm:text-xl font-bold mb-2 sm:mb-4">
                         RD$ {{ producto.price|floatformat:2 }}
                     </p>
 
                     <div class="mt-auto">
                         <a href="{% url 'product_detail' producto.slug %}"
-                           class="block w-full text-center 
-                                  bg-black text-white 
-                                  py-2 sm:py-3 
-                                  rounded-lg 
-                                  hover:bg-gray-800 
-                                  transition 
-                                  text-xs sm:text-base">
+                           class="block w-full text-center bg-black text-white py-2 sm:py-3 rounded-lg hover:bg-gray-800 transition text-sm sm:text-base">
                             Ver detalle
                         </a>
                     </div>
@@ -76,19 +70,9 @@
 
             </div>
 
-            {% empty %}
-
-            <p class="col-span-full text-center text-gray-500 text-lg">
-                No hay productos disponibles en este momento.
-            </p>
-
             {% endfor %}
 
         </div>
 
     </div>
 </section>
-
-</div>
-
-{% endblock %}
