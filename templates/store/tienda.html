@@ -3,20 +3,20 @@
 {% block content %}
 
 <!-- ESPACIO PARA HEADER FIXED -->
-<div class="pt-28">
+<div class="pt-20 sm:pt-28">
 
 <!-- HERO SECTION -->
 <section class="bg-gradient-to-r from-blue-800 via-blue-600 to-green-600 
-                py-12 sm:py-24 text-white text-center">
+                py-8 sm:py-24 text-white text-center">
 
-    <div class="max-w-5xl mx-auto px-6">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6">
 
-        <!-- Más pequeño en móvil -->
-        <h1 class="text-3xl sm:text-6xl font-extrabold mb-4 sm:mb-6 leading-tight">
+        <!-- Mucho más compacto en móvil -->
+        <h1 class="text-2xl sm:text-6xl font-extrabold mb-3 sm:mb-6 leading-tight">
             Descubre lo mejor de Bávaro Shop
         </h1>
 
-        <p class="text-base sm:text-2xl opacity-90 max-w-3xl mx-auto">
+        <p class="text-sm sm:text-2xl opacity-90 max-w-3xl mx-auto">
             Productos seleccionados con calidad premium y estilo moderno.
         </p>
 
@@ -24,46 +24,42 @@
 </section>
 
 <!-- PRODUCTOS -->
-<section class="bg-gray-100 py-12 sm:py-24">
+<section class="bg-gray-100 py-8 sm:py-24">
 
-    <div class="max-w-7xl mx-auto px-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
 
-        <h2 class="text-2xl sm:text-4xl font-bold text-gray-800 mb-8 sm:mb-12 text-center">
+        <h2 class="text-xl sm:text-4xl font-bold text-gray-800 mb-6 sm:mb-12 text-center">
             Productos disponibles
         </h2>
 
-        <!-- En móvil 1 columna, todo más compacto -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-8">
 
             {% for producto in productos %}
 
-            <div class="bg-white rounded-2xl shadow-md hover:shadow-xl 
+            <div class="bg-white rounded-xl shadow-md hover:shadow-xl 
                         transition duration-300 overflow-hidden flex flex-col">
 
-                <!-- Imagen (MUCHO más pequeña en móvil) -->
+                <!-- Imagen más pequeña en móvil -->
                 <div class="bg-gray-50 flex items-center justify-center 
-                            h-36 sm:h-52 p-3 sm:p-4">
+                            h-28 sm:h-52 p-2 sm:p-4">
                     {% if producto.image %}
                         <img src="{{ producto.image.url }}"
-                             class="max-h-28 sm:max-h-44 w-auto object-contain">
+                             class="max-h-20 sm:max-h-44 w-auto object-contain">
                     {% endif %}
                 </div>
 
-                <!-- Info -->
-                <div class="p-4 sm:p-6 flex flex-col flex-grow">
+                <!-- Info más compacta -->
+                <div class="p-3 sm:p-6 flex flex-col flex-grow">
 
-                    <!-- Título más pequeño en móvil -->
-                    <h3 class="text-base sm:text-lg font-semibold text-gray-800 mb-1 sm:mb-2">
+                    <h3 class="text-sm sm:text-lg font-semibold text-gray-800 mb-1 sm:mb-2">
                         {{ producto.name }}
                     </h3>
 
-                    <!-- Precio más compacto en móvil -->
-                    <p class="text-green-600 text-lg sm:text-xl font-bold mb-3 sm:mb-4">
+                    <p class="text-green-600 text-base sm:text-xl font-bold mb-2 sm:mb-4">
                         RD$ {{ producto.price|floatformat:2 }}
                     </p>
 
                     <div class="mt-auto">
-                        <!-- Botón más bajo en móvil -->
                         <a href="{% url 'product_detail' producto.slug %}"
                            class="block w-full text-center 
                                   bg-black text-white 
@@ -71,7 +67,7 @@
                                   rounded-lg 
                                   hover:bg-gray-800 
                                   transition 
-                                  font-medium text-sm sm:text-base">
+                                  text-xs sm:text-base">
                             Ver detalle
                         </a>
                     </div>
