@@ -88,6 +88,7 @@ else:
             "NAME": BASE_DIR / "db.sqlite3",
         }
     }
+    print("DATABASE_URL:", os.getenv("DATABASE_URL"))
 # ======================
 # PASSWORD VALIDATION
 # ======================
