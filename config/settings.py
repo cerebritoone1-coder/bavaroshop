@@ -1,9 +1,9 @@
 from pathlib import Path
 import os
-from dotenv import load_dotenv
+
 import dj_database_url
 
-load_dotenv()
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -69,24 +69,25 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # DATABASE CONFIGURACIÓN CORRECTA
 # ======================
 
-import os
-import dj_database_url
-from dotenv import load_dotenv
-
-load_dotenv()
 
 DATABASE_URL = os.getenv("DATABASE_URL")
 
-if not DATABASE_URL:
-    raise Exception("DATABASE_URL no está configurada")
-
-DATABASES = {
-    "default": dj_database_url.parse(
-        DATABASE_URL,
-        conn_max_age=600,
-        ssl_require=True
-    )
-}
+if DATABASE_URL:
+    DATABASES = {
+        "default": dj_database_url.parse(
+            DATABASE_URL,
+            conn_max_age=600,
+            ssl_require=True
+        )
+    }
+else:
+    # Solo para desarrollo local
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
+    }
 
  
 # ======================
