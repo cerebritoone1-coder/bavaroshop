@@ -1,1 +1,1 @@
-web: python -m gunicorn tienda_bavaro.wsgi:application --bind 0.0.0.0:$PORT
+web: python -m gunicorn config.wsgi:application --bind 0.0.0.0:$PORT
