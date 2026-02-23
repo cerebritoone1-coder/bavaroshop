@@ -30,8 +30,6 @@ def home(request):
     return render(request, 'store/home.html')
 
 
-
-@login_required
 def tienda(request):
     query = request.GET.get('q')
     productos = Product.objects.filter(is_active=True)
@@ -42,7 +40,10 @@ def tienda(request):
             Q(description__icontains=query)
         )
 
-    unread_count = request.user.notifications.filter(is_read=False).count()
+    if request.user.is_authenticated:
+        unread_count = request.user.notifications.filter(is_read=False).count()
+    else:
+        unread_count = 0
 
     return render(request, 'store/tienda.html', {
         'productos': productos,
