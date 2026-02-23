@@ -16,9 +16,7 @@ urlpatterns = [
     # ==========================
     # AUTENTICACIÓN
     # ==========================
-    path('login/', CustomLoginView.as_view(), name='login'),
-    path('logout/', views.custom_logout, name='logout'),
-    path('register/', RegisterView.as_view(), name='register'),
+  
 
     # ==========================
     # PERFIL
@@ -43,35 +41,13 @@ urlpatterns = [
     # ==========================
     # CAMBIAR CONTRASEÑA (PROPIO)
     # ==========================
-    path(
-        'cambiar-password/',
-        auth_views.PasswordChangeView.as_view(
-            template_name='store/cambiar_password.html',
-            success_url='/cambiar-password/exito/'
-        ),
-        name='password_change'
-    ),
-
-    path(
-        'cambiar-password/exito/',
-        auth_views.PasswordChangeDoneView.as_view(
-            template_name='store/cambiar_password_exito.html'
-        ),
-        name='password_change_done'
-    ),
+  
 
     # ==========================
 # RECUPERAR CONTRASEÑA
 # ==========================
 
-path(
-    'password-reset/',
-    auth_views.PasswordResetView.as_view(
-        template_name='store/password_reset.html',
-        email_template_name='store/password_reset_email.html',
-        success_url='/password-reset/done/'
-    ),
-    name='password_reset'
+
 ),
 
 path(
