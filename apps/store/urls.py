@@ -4,20 +4,21 @@ from . import views
 from .views import CustomLoginView, RegisterView
 
 urlpatterns = [
-# ==========================
-# AUTENTICACIÓN
-# ==========================
 
-path('login/', CustomLoginView.as_view(), name='login'),
-path('register/', RegisterView.as_view(), name='register'),
-path('logout/', views.custom_logout, name='logout'),
     # ==========================
     # HOME Y TIENDA
     # ==========================
     path('', views.home, name='home'),
     path('tienda/', views.tienda, name='tienda'),
     path('producto/<slug:slug>/', views.product_detail, name='product_detail'),
+
+    # ==========================
+    # AUTENTICACIÓN
+    # ==========================
+    path('login/', CustomLoginView.as_view(), name='login'),
+    path('register/', RegisterView.as_view(), name='register'),
     path('logout/', views.custom_logout, name='logout'),
+
     # ==========================
     # PERFIL
     # ==========================
