@@ -9,14 +9,8 @@ urlpatterns = [
     # HOME Y TIENDA
     # ==========================
     path('', views.home, name='home'),
-    path('producto/<slug:slug>/', views.product_detail, name='product_detail'),
-
     path('tienda/', views.tienda, name='tienda'),
-
-    # ==========================
-    # AUTENTICACIÓN
-    # ==========================
-  
+    path('producto/<slug:slug>/', views.product_detail, name='product_detail'),
 
     # ==========================
     # PERFIL
@@ -30,63 +24,52 @@ urlpatterns = [
     # ==========================
     path('notificaciones/', views.notificaciones_web, name='notificaciones_web'),
     path('notificacion/<int:id>/', views.marcar_notificacion, name='marcar_notificacion'),
+    path('notificacion/eliminar/<int:id>/', views.eliminar_notificacion, name='eliminar_notificacion'),
+
+    # ==========================
+    # RECUPERAR CONTRASEÑA
+    # ==========================
+    path(
+        'password-reset/done/',
+        auth_views.PasswordResetDoneView.as_view(
+            template_name='store/password_reset_done.html'
+        ),
+        name='password_reset_done'
+    ),
 
     path(
-    'notificacion/eliminar/<int:id>/',
-    views.eliminar_notificacion,
-    name='eliminar_notificacion'
-),
+        'reset/<uidb64>/<token>/',
+        auth_views.PasswordResetConfirmView.as_view(
+            template_name='store/password_reset_confirm.html',
+            success_url='/reset/done/'
+        ),
+        name='password_reset_confirm'
+    ),
 
+    path(
+        'reset/done/',
+        auth_views.PasswordResetCompleteView.as_view(
+            template_name='store/password_reset_complete.html'
+        ),
+        name='password_reset_complete'
+    ),
 
     # ==========================
-    # CAMBIAR CONTRASEÑA (PROPIO)
+    # CARRITO
     # ==========================
-  
+    path('carrito/', views.ver_carrito, name='ver_carrito'),
+    path('agregar-al-carrito/<int:product_id>/', views.agregar_al_carrito, name='agregar_al_carrito'),
+    path('eliminar/<str:key>/', views.eliminar_carrito, name='eliminar_carrito'),
 
     # ==========================
-# RECUPERAR CONTRASEÑA
-# ==========================
+    # CHECKOUT
+    # ==========================
+    path('checkout-direccion/', views.checkout_direccion, name='checkout_direccion'),
+    path('datos-transferencia/', views.datos_transferencia, name='datos_transferencia'),
+    path('pedido-confirmado/', views.pedido_confirmado, name='pedido_confirmado'),
 
-
-),
-
-path(
-    'password-reset/done/',
-    auth_views.PasswordResetDoneView.as_view(
-        template_name='store/password_reset_done.html'
-    ),
-    name='password_reset_done'
-),
-
-path(
-    'reset/<uidb64>/<token>/',
-    auth_views.PasswordResetConfirmView.as_view(
-        template_name='store/password_reset_confirm.html',
-        success_url='/reset/done/'
-    ),
-    name='password_reset_confirm'
-),
-
-path(
-    'reset/done/',
-    auth_views.PasswordResetCompleteView.as_view(
-        template_name='store/password_reset_complete.html'
-    ),
-    name='password_reset_complete'
-),
-
-# ==========================
-# CARRITO
-# ==========================
-path('carrito/', views.ver_carrito, name='ver_carrito'),
-path('agregar-al-carrito/<int:product_id>/', views.agregar_al_carrito, name='agregar_al_carrito'),
-path('eliminar/<str:key>/', views.eliminar_carrito, name='eliminar_carrito'),
-
-path("checkout-direccion/", views.checkout_direccion, name="checkout_direccion"),
-
-path("datos-transferencia/", views.datos_transferencia, name="datos_transferencia"),
-path("pedido-confirmado/", views.pedido_confirmado, name="pedido_confirmado"),
-
-path('eliminar-pedido/<int:pedido_id>/', views.eliminar_pedido, name='eliminar_pedido'),
-
+    # ==========================
+    # PEDIDOS
+    # ==========================
+    path('eliminar-pedido/<int:pedido_id>/', views.eliminar_pedido, name='eliminar_pedido'),
 ]
