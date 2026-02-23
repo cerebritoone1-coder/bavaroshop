@@ -4,7 +4,13 @@ from . import views
 from .views import CustomLoginView, RegisterView
 
 urlpatterns = [
+# ==========================
+# AUTENTICACIÓN
+# ==========================
 
+path('login/', CustomLoginView.as_view(), name='login'),
+path('logout/', views.custom_logout, name='logout'),
+path('register/', RegisterView.as_view(), name='register'),
     # ==========================
     # HOME Y TIENDA
     # ==========================
