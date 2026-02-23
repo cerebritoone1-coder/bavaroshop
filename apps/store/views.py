@@ -335,7 +335,6 @@ def checkout_direccion(request):
         "total": total
     })
 
-@login_required
 def mi_perfil(request):
     pedidos = request.user.orders.all().order_by('-created_at')
     return render(request, 'store/mi_perfil.html', {
@@ -347,7 +346,7 @@ def datos_transferencia(request):
     return render(request, "store/datos_transferencia.html")
 
 
-@login_required
+
 def pedido_confirmado(request):
     return render(request, "store/pedido_confirmado.html")
 

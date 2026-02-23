@@ -22,16 +22,15 @@ urlpatterns = [
     # ==========================
     # PERFIL
     # ==========================
-    path('mi-perfil/', views.mi_perfil, name='mi_perfil'),
-    path('mis-pedidos/', views.mis_pedidos, name='mis_pedidos'),
-    path('direcciones/', views.direcciones, name='direcciones'),
+   
+   
+ 
 
     # ==========================
     # NOTIFICACIONES
     # ==========================
-    path('notificaciones/', views.notificaciones_web, name='notificaciones_web'),
-    path('notificacion/<int:id>/', views.marcar_notificacion, name='marcar_notificacion'),
-    path('notificacion/eliminar/<int:id>/', views.eliminar_notificacion, name='eliminar_notificacion'),
+ 
+ 
 
     # ==========================
     # RECUPERAR CONTRASEÑA
