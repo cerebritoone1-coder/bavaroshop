@@ -27,8 +27,17 @@
     </p>
 
     <!-- BOTONES (SOLO ACCESO) -->
-    <div class="flex justify-center gap-4">
-<a href="{% url 'tienda' %}" class="btn-enter">
+<a href="{% url 'tienda' %}" 
+   class="inline-block mt-8 px-8 py-4 
+          text-lg font-semibold 
+          text-white 
+          bg-gradient-to-r from-orange-500 to-orange-600
+          rounded-xl
+          shadow-lg shadow-orange-500/30
+          transition-all duration-300
+          hover:scale-105
+          hover:shadow-xl hover:shadow-orange-500/50
+          hover:from-orange-600 hover:to-orange-700">
     Entrar a la tienda
 </a>
     </div>
