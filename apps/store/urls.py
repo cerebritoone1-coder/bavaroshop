@@ -11,7 +11,7 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('tienda/', views.tienda, name='tienda'),
     path('producto/<slug:slug>/', views.product_detail, name='product_detail'),
-
+    path('logout/', views.custom_logout, name='logout'),
     # ==========================
     # PERFIL
     # ==========================
