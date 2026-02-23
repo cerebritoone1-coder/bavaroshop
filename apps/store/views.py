@@ -4,7 +4,6 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
 from django.contrib.auth import login, logout
-from django.contrib.auth.decorators import login_required
 from .forms import CustomUserCreationForm
 from .models import Notification
 from django.shortcuts import get_object_or_404
@@ -159,7 +158,7 @@ class CustomLoginView(LoginView):
         # Crear notificación de bienvenida
         Notification.objects.create(
             user=self.request.user,
-            message="Bienvenido nuevamente a Bávaro Shop 🎉"
+            message="Bienvenido nuevamente a MixShop 🎉"
         )
 
         return response
