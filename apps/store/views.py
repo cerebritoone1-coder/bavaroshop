@@ -187,14 +187,3 @@ def datos_transferencia(request):
 def pedido_confirmado(request):
     return render(request, "store/pedido_confirmado.html")
 
-from django.contrib.auth.models import User
-
-def crear_admin_automatico():
-    if not User.objects.filter(username="admin").exists():
-        User.objects.create_superuser(
-            username="admin",
-            email="cerebritoone1@gmail.com",
-            password="marino19870603"
-        )
-
-crear_admin_automatico()
