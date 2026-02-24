@@ -12,9 +12,8 @@
     
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
 
-
 <link rel="manifest" href="{% static 'manifest.json' %}">
-<meta name="theme-color" content="#000000">
+<meta name="theme-color" content="#0f172a">
 
 </head>
 
@@ -105,6 +104,13 @@ function toggleMenu() {
   menu.classList.toggle("hidden");
 }
 </script>
-
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/static/js/service-worker.js')
+    .then(function() {
+      console.log("Service Worker registrado");
+    });
+}
+</script>
 </body>
 </html>
