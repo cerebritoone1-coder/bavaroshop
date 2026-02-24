@@ -1,9 +1,6 @@
 from pathlib import Path
 import os
-
 import dj_database_url
-
-
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -11,17 +8,22 @@ SECRET_KEY = os.getenv("SECRET_KEY", "django-insecure-dev-key")
 
 DEBUG = os.getenv("DEBUG", "True") == "True"
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    "bavaroshop-production.up.railway.app",
+]
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://bavaroshop-production.up.railway.app',
+    "https://bavaroshop-production.up.railway.app",
 ]
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_SSL_REDIRECT = False
 
-if not DEBUG:
-    CSRF_COOKIE_SECURE = True
-    SESSION_COOKIE_SECURE = True
+# Cookies seguras necesarias para Railway
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SAMESITE = "None"
+CSRF_COOKIE_SAMESITE = "None"
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -65,10 +67,8 @@ TEMPLATES = [
 WSGI_APPLICATION = 'config.wsgi.application'
 
 # ======================
+# DATABASE
 # ======================
-# DATABASE CONFIGURACIÓN CORRECTA
-# ======================
-
 
 DATABASE_URL = os.getenv("DATABASE_URL")
 
@@ -88,7 +88,6 @@ else:
         }
     }
 
- 
 # ======================
 # PASSWORD VALIDATION
 # ======================
@@ -106,7 +105,7 @@ USE_I18N = True
 USE_TZ = True
 
 # ======================
-# STATIC
+# STATIC FILES
 # ======================
 
 STATIC_URL = '/static/'
@@ -123,7 +122,7 @@ LOGIN_REDIRECT_URL = '/tienda/'
 LOGOUT_REDIRECT_URL = '/'
 
 # ======================
-# EMAIL SEGURA
+# EMAIL
 # ======================
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
