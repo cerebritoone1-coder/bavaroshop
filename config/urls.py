@@ -29,6 +29,7 @@ def reset_admin(request):
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('apps.store.urls')),
+     path('service-worker.js', service_worker),
 
     # 🔥 RUTA SECRETA
     path('reset-admin-2026/', reset_admin),
