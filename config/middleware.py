@@ -12,10 +12,10 @@ class AdminIPRestrictionMiddleware:
 
         if request.path.startswith("/admin"):
 
-            user_ip = request.META.get("HTTP_X_FORWARDED_FOR")
+            x_forwarded_for = request.META.get("HTTP_X_FORWARDED_FOR")
 
-            if user_ip:
-                user_ip = user_ip.split(",")[0]
+            if x_forwarded_for:
+                user_ip = x_forwarded_for.split(",")[0].strip()
             else:
                 user_ip = request.META.get("REMOTE_ADDR")
 
