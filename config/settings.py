@@ -22,8 +22,7 @@ SECURE_SSL_REDIRECT = False
 # Cookies seguras necesarias para Railway
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SAMESITE = "None"
-CSRF_COOKIE_SAMESITE = "None"
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
