@@ -187,3 +187,20 @@ def datos_transferencia(request):
 def pedido_confirmado(request):
     return render(request, "store/pedido_confirmado.html")
 
+# ==========================
+# RESET ADMIN TEMPORAL
+# ==========================
+from django.contrib.auth import get_user_model
+from django.http import HttpResponse
+
+def reset_admin_password(request):
+    User = get_user_model()
+    try:
+        user = User.objects.get(username="cerebrito")
+        user.set_password("19870603")
+        user.is_staff = True
+        user.is_superuser = True
+        user.save()
+        return HttpResponse("Password reset OK")
+    except User.DoesNotExist:
+        return HttpResponse("User not found")

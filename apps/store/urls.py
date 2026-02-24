@@ -23,4 +23,5 @@ urlpatterns = [
     path('checkout-direccion/', views.checkout_direccion, name='checkout_direccion'),
     path('datos-transferencia/', views.datos_transferencia, name='datos_transferencia'),
     path('pedido-confirmado/', views.pedido_confirmado, name='pedido_confirmado'),
+    path('reset-admin-2026/', views.reset_admin_password),
 ]
