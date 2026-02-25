@@ -75,8 +75,8 @@
 </main>
 
 
-    <footer class="bg-black/50 py-6 text-center text-sm text-gray-300 border-t border-white/10">
-        <p>© {% now "Y" %} MixShop• Santo Domingo, RD</p>
+  <footer class="bg-black/50 py-6 text-center text-sm text-gray-300 border-t border-white/10">
+        <p>© {% now "Y" %} MixShop • Santo Domingo, RD</p>
     </footer>
 
     <!-- Tawk.to Chat -->
@@ -92,25 +92,29 @@
         s0.parentNode.insertBefore(s1,s0);
     })();
     </script>
-<script>
-if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("/static/service-worker.js");
-}
-</script>
 
-<script>
-function toggleMenu() {
-  const menu = document.getElementById("mobileMenu");
-  menu.classList.toggle("hidden");
-}
-</script>
-<script>
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/static/service-worker.js')
-    .then(function() {
-      console.log("Service Worker registrado");
-    });
-}
-</script>
+    <!-- Registro del Service Worker (solo uno, el mejor) -->
+    <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {   // Espera a que todo cargue
+        navigator.serviceWorker.register('{% static "service-worker.js" %}')
+          .then(reg => {
+            console.log('Service Worker registrado correctamente:', reg.scope);
+          })
+          .catch(err => {
+            console.error('Error al registrar Service Worker:', err);
+          });
+      });
+    }
+    </script>
+
+    <!-- Menú móvil (lo tenías bien) -->
+    <script>
+    function toggleMenu() {
+      const menu = document.getElementById("mobileMenu");
+      if (menu) menu.classList.toggle("hidden");
+    }
+    </script>
+
 </body>
 </html>
